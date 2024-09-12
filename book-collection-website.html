@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #2980b9;
+            padding: 0.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        nav a:hover {
+            background-color: #1c638e;
+        }
+        #genre-filter {
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #genre-filter:hover {
+            background-color: #2980b9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Book Collection</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="books.html">My Book Collection</a>
+    </nav>
+    
+    <select id="genre-filter" onchange="filterBooks()">
+        <option value="all">All Genres</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Non-Fiction">Non-Fiction</option>
+    </select>
+
+    <table id="book-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Comments</th>
+                <th>Commentary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-genre="Fiction">
+                <td>To Kill a Mockingbird</td>
+                <td>Harper Lee</td>
+                <td>1960</td>
+                <td>Fiction</td>
+                <td>Pulitzer Prize winner</td>
+                <td>A powerful exploration of racial injustice in the American South</td>
+            </tr>
+            <tr data-genre="Fiction">
+                <td>1984</td>
+                <td>George Orwell</td>
+                <td>1949</td>
+                <td>Fiction</td>
+                <td>Dystopian classic</td>
+                <td>A chilling vision of a totalitarian future that remains relevant today</td>
+            </tr>
+            <tr data-genre="Non-Fiction">
+                <td>A Brief History of Time</td>
+                <td>Stephen Hawking</td>
+                <td>1988</td>
+                <td>Non-Fiction</td>
+                <td>Bestseller on cosmology</td>
+                <td>Hawking's attempt to explain complex scientific concepts to a general audience</td>
+            </tr>
+            <tr data-genre="Non-Fiction">
+                <td>Sapiens: A Brief History of Humankind</td>
+                <td>Yuval Noah Harari</td>
+                <td>2011</td>
+                <td>Non-Fiction</td>
+                <td>International bestseller</td>
+                <td>A thought-provoking look at the history and future of our species</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function filterBooks() {
+            var genre = document.getElementById("genre-filter").value;
+            var rows = document.getElementById("book-table").getElementsByTagName("tbody")[0].rows;
+            
+            for (var i = 0; i < rows.length; i++) {
+                if (genre === "all" || rows[i].getAttribute("data-genre") === genre) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
